@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import LinksList from './LinksList';
+import { fetchLinks } from '../actions/AppActions';
 
 class LinksPage extends React.Component {
   componentDidMount() {
-
+    this.props.fetchLinks();
   }
   render() {
     return (
@@ -17,7 +18,8 @@ class LinksPage extends React.Component {
 }
 
 LinksPage.propTypes = {
-  links: React.PropTypes.array.isRequired
+  links: React.PropTypes.array.isRequired,
+  fetchLinks: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -26,4 +28,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LinksPage);
+export default connect(mapStateToProps, { fetchLinks })(LinksPage);
