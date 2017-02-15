@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkGard from './LinkGard';
 
 export default function LinksList({ links }) {
   const emptyMessage = (
@@ -6,7 +7,9 @@ export default function LinksList({ links }) {
   );
   
   const linksList = (
-    <p>linksList</p>
+    <div className="ui four cards">
+      {links.map(link => <LinkGard link={link} key={link._id} />)}
+    </div>
   );
   
   return (
