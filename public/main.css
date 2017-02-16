@@ -1,0 +1,9 @@
+.shorten-url {
+    border: 2px solid #1678c2;
+    border-radius: .28571429rem;
+    padding: 5px;
+}
+
+.shortened-link {
+    padding-top: 20px;
+}
