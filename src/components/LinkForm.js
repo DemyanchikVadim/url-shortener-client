@@ -51,9 +51,9 @@ class LinkForm extends React.Component {
   render() {
     return (
       <div className="container">
+        <h1 className="form-header">Url-shortener</h1>
         <div className="shorten-url">
           <form className={classnames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
-            <h1>Add new link</h1>
             
             {this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div> }
             
@@ -61,6 +61,7 @@ class LinkForm extends React.Component {
               <label htmlFor='link'>Link</label>
               <input
                 name='link'
+                placeholder="Paste a link to short it"
                 value={this.state.link}
                 onChange={this.handleChange}
                 id='link'/>
@@ -71,6 +72,7 @@ class LinkForm extends React.Component {
               <label htmlFor='tags'>Tags</label>
               <input
                 name='tags'
+                placeholder="Paste tags"
                 value={this.state.tags}
                 onChange={this.handleChange}
                 id='tags'/>
@@ -89,4 +91,4 @@ class LinkForm extends React.Component {
   }
 }
 
-export default connect(null, {saveLink})(LinkForm);
+export default connect(null, { saveLink })(LinkForm);
