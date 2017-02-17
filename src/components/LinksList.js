@@ -7,7 +7,7 @@ export default function LinksList({ links }) {
   );
   
   const linksList = (
-    <div className="ui four cards">
+    <div className="ui one cards">
       {links.map(link => <LinkGard link={link} key={link._id} />)}
     </div>
   );
