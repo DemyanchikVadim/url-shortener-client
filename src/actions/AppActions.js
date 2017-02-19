@@ -1,7 +1,4 @@
-export const SET_LINKS = 'SET_LINKS';
-export const ADD_LINK = 'ADD_LINK';
-export const LINK_FETCHED = 'LINK_FETCHED';
-export const LINK_UPDATED = 'LINK_UPDATED';
+import { ADD_LINK, SET_LINKS, LINK_FETCHED, LINK_UPDATED, LINK_DELETED } from '../constants/AppConstants';
 
 export function setLinks(links) {
   return {
@@ -28,6 +25,13 @@ export function linkUpdated(link) {
   return {
     type: LINK_UPDATED,
     link
+  }
+}
+
+export function linkDeleted(linkId) {
+  return {
+    type: LINK_DELETED,
+    linkId
   }
 }
 
@@ -64,6 +68,18 @@ export function updateLink(data) {
       }
     }).then(handleResponse)
     .then(data => dispatch(linkUpdated(data)));
+  }
+}
+
+export function deleteLink(id) {
+  return dispatch => {
+    return fetch(`/api/links/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(handleResponse)
+    .then(data => dispatch(linkDeleted(id)));
   }
 }
 

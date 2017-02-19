@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function LinkCard({link}) {
+export default function LinkCard({link, deleteLink}) {
   return (
     <div className="card">
       <div className="content">
@@ -12,7 +12,7 @@ export default function LinkCard({link}) {
       </div>
       <div className="left floated">
         <Link to={`/link/${link._id}`} className="ui primary button">Edit</Link>
-        <button className="ui button">Delete</button>
+        <button className="ui button" onClick={() => deleteLink(link._id)}>Delete</button>
       </div>
     </div>
   );

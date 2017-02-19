@@ -1,14 +1,14 @@
 import React from 'react';
 import LinkGard from './LinkCard';
 
-export default function LinksList({ links }) {
+export default function LinksList({ links, deleteLink }) {
   const emptyMessage = (
     <p>There is no links yet</p>
   );
   
   const linksList = (
     <div className="ui one cards">
-      {links.map(link => <LinkGard link={link} key={link._id} />)}
+      { links.map(link => <LinkGard link={link} key={link._id} deleteLink={deleteLink}/>) }
     </div>
   );
   
@@ -20,5 +20,6 @@ export default function LinksList({ links }) {
 }
 
 LinksList.propTypes = {
-  links: React.PropTypes.array.isRequired
+  links: React.PropTypes.array.isRequired,
+  deleteLink: React.PropTypes.func.isRequired
 };
