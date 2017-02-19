@@ -1,4 +1,4 @@
-import { ADD_LINK } from '../actions/AppActions';
+import { ADD_LINK } from '../constants/AppConstants';
 
 export default function link(state = [], action = {}) {
   switch (action.type) {
