@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function LinkGard({link}) {
+export default function LinkCard({link}) {
   return (
     <div className="card">
       <div className="content">
@@ -10,14 +11,14 @@ export default function LinkGard({link}) {
         <div className="description"><b>Tags: </b>{link.tags}</div>
       </div>
       <div className="left floated">
-        <button className="ui primary button">Edit</button>
+        <Link to={`/link/${link._id}`} className="ui primary button">Edit</Link>
         <button className="ui button">Delete</button>
       </div>
     </div>
   );
 }
 
-LinkGard.propTypes = {
+LinkCard.propTypes = {
   link: React.PropTypes.object.isRequired
 };
 

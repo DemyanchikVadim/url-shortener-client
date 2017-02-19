@@ -19,6 +19,7 @@ class App extends React.Component {
         </div>
         
         <Route exact path="/" component={LinkForm} />
+        <Route path="/link/:_id" component={LinkForm} />
         <Route path="/links" component={LinksPage} />
       </div>
     );
