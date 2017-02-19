@@ -1,15 +1,31 @@
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { saveLink } from '../actions/AppActions';
+import { saveLink, fetchLink, updateLink } from '../actions/AppActions';
 import Link from './Link';
 
 class LinkForm extends React.Component {
   state = {
-    link: '',
-    tags: '',
+    _id: this.props.link ? this.props.link._id : null,
+    link: this.props.link ? this.props.link.url : '',
+    tags: this.props.link ? this.props.link.tags : '',
     errors: {},
     loading: false
+  };
+  
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({
+      _id: nextProps.link._id,
+      link: nextProps.link.url,
+      tags: nextProps.link.tags
+    })
+  };
+  
+  componentDidMount = () => {
+    const { match } = this.props;
+    if (match.params._id) {
+      this.props.fetchLink(match.params._id);
+    }
   };
   
   handleChange = (e) => {
@@ -37,14 +53,23 @@ class LinkForm extends React.Component {
     const isValid = Object.keys(errors).length === 0;
     
     if (isValid) {
-      const {link, tags} = this.state;
+      const { _id, link, tags} = this.state;
       this.setState({loading: true});
-      this.props.saveLink({link, tags}).then(
-        () => {
-          this.setState({loading: false})
-        },
-        (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
-      );
+      if (_id) {
+        this.props.updateLink({ _id, link, tags }).then(
+          () => {
+            this.setState({loading: false})
+          },
+          (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
+        );
+      } else {
+        this.props.saveLink({link, tags}).then(
+          () => {
+            this.setState({loading: false})
+          },
+          (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
+        );
+      }
     }
   };
   
@@ -91,4 +116,14 @@ class LinkForm extends React.Component {
   }
 }
 
-export default connect(null, { saveLink })(LinkForm);
+function mapStateToProps(state, props) {
+  const { match } = props;
+  if(match.params._id) {
+    return {
+      link: state.links.find(item => item._id === match.params._id)
+    }
+  }
+  return { link: null }
+}
+
+export default connect(mapStateToProps, { saveLink, fetchLink, updateLink })(LinkForm);

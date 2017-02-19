@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkGard from './LinkGard';
+import LinkGard from './LinkCard';
 
 export default function LinksList({ links }) {
   const emptyMessage = (
