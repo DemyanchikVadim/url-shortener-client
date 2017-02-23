@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class Link extends React.Component {
-  
   render() {
-    const message = (
+    const shortLink = (
       <div className="ui green message">
         <div>
           <h3>
@@ -22,14 +21,10 @@ class Link extends React.Component {
           </h3>
         </div>
       </div>);
-    
-    const error = ( <div>
-    
-    </div> );
-    
+
     return (
       <div>
-        {this.props.link.shortLink ? message : error}
+        {this.props.link.shortLink && shortLink}
       </div>
     );
   }
@@ -37,7 +32,7 @@ class Link extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    link: state.link
+    link: state.shortLink
   };
 }
 

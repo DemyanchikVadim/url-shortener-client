@@ -1,6 +1,6 @@
 import { ADD_LINK } from '../constants/AppConstants';
 
-export default function link(state = [], action = {}) {
+export default function shortLink(state = [], action = {}) {
   switch (action.type) {
     case ADD_LINK:
       return action.link;

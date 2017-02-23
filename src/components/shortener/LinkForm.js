@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { saveLink, fetchLink, updateLink } from '../../actions/AppActions';
-import Link from './Link';
-import { isEmpty, isURL } from 'validator';
+import ShortLink from './ShortLink';
+import validateInput from '../validations/linkform';
 
 class LinkForm extends React.Component {
   state = {
@@ -41,17 +41,19 @@ class LinkForm extends React.Component {
       this.setState({[e.target.name]: e.target.value});
     }
   };
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+    if (!isValid) {
+      this.setState({errors});
+    }
+    return isValid;
+  }
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const errors = {};
-    if (isEmpty(this.state.link)) errors.link = 'Input is empty';
-    if (!isURL(this.state.link) && !isEmpty(this.state.link)) errors.link = 'It is not a valid url.';
-    if (isEmpty(this.state.tags)) errors.tags = 'Input is empty';
-    this.setState({errors});
-    const isValid = Object.keys(errors).length === 0;
 
-    if (isValid) {
+    if (this.isValid()) {
       const { _id, link, tags} = this.state;
       this.setState({loading: true});
       if (_id) {
@@ -108,7 +110,7 @@ class LinkForm extends React.Component {
           </form>
         </div>
         <div className="shortened-link">
-          <Link />
+          <ShortLink />
         </div>
       </div>
     );

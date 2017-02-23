@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import link from './link'
+import shortLink from './shortLink'
 import links from './links';
 
 export default combineReducers({
-  links, link
+  links, shortLink
 });
