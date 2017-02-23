@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { saveLink, fetchLink, updateLink } from '../../actions/AppActions';
 import Link from './Link';
+import { isEmpty, isURL } from 'validator';
 
 class LinkForm extends React.Component {
   state = {
@@ -43,15 +44,13 @@ class LinkForm extends React.Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    
     const errors = {};
-    const urlPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
-    if (this.state.link === '') errors.link = 'Input is empty';
-    if (!urlPattern.test(this.state.link) && this.state.link !== '') errors.link = 'It is not a valid url.';
-    if (this.state.tags === '') errors.tags = 'Input is empty';
+    if (isEmpty(this.state.link)) errors.link = 'Input is empty';
+    if (!isURL(this.state.link) && !isEmpty(this.state.link)) errors.link = 'It is not a valid url.';
+    if (isEmpty(this.state.tags)) errors.tags = 'Input is empty';
     this.setState({errors});
     const isValid = Object.keys(errors).length === 0;
-    
+
     if (isValid) {
       const { _id, link, tags} = this.state;
       this.setState({loading: true});

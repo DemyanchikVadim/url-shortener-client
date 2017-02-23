@@ -29,7 +29,7 @@ class SignupForm extends React.Component {
             value={this.state.username}
             onChange={this.handleChange}
             type="text"
-            name="username" />
+            name="username"/>
         </div>
 
         <div className="field">
@@ -38,7 +38,7 @@ class SignupForm extends React.Component {
             value={this.state.email}
             onChange={this.handleChange}
             type="text"
-            name="email" />
+            name="email"/>
         </div>
 
         <div className="field">
@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
             type="text"
-            name="password" />
+            name="password"/>
         </div>
 
         <div className="field">
@@ -56,7 +56,7 @@ class SignupForm extends React.Component {
             value={this.state.confirmPassword}
             onChange={this.handleChange}
             type="text"
-            name="confirmPassword" />
+            name="confirmPassword"/>
         </div>
         <button className="ui button" type="submit">Submit</button>
       </form>
