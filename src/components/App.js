@@ -1,27 +1,20 @@
 import React from 'react';
-import LinksPage from './LinksPage';
-import LinkForm from './LinkForm';
-import { Link, Route } from 'react-router-dom';
+import LinksPage from './links/LinksPage';
+import LinkForm from './shortener/LinkForm';
+import NavigationBar from './menu/NavigationBar';
+import SignupPage from './signup/SignupPage';
+import { Route } from 'react-router-dom';
 
-const ActiveLink = ({ label, to, activeOnlyWhenExact }) => (
-  <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
-    <Link className={match ? 'active item' : 'item'} to={to}>{label}</Link>
-  )} />
-);
 
 class App extends React.Component {
   render() {
     return (
-      <div className="ui container">
-        <div className="ui two item menu">
-          <ActiveLink activeOnlyWhenExact to="/" label="Home" />
-          <ActiveLink activeOnlyWhenExact to="/links" label="Links" />
-        </div>
-        
+      <NavigationBar>
         <Route exact path="/" component={LinkForm} />
         <Route path="/link/:_id" component={LinkForm} />
         <Route path="/links" component={LinksPage} />
-      </div>
+        <Route path="/signup" component={SignupPage} />
+      </NavigationBar>
     );
   }
 }

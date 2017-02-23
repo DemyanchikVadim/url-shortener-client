@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import LinksList from './LinksList';
-import { fetchLinks, deleteLink } from '../actions/AppActions';
+import { fetchLinks, deleteLink } from '../../actions/AppActions';
 
 class LinksPage extends React.Component {
   componentDidMount() {
@@ -9,8 +9,7 @@ class LinksPage extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>Links Page</h1>
+      <div className="container">
         <LinksList links={this.props.links} deleteLink={this.props.deleteLink}/>
       </div>
     );

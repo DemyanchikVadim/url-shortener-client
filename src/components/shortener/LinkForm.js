@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { saveLink, fetchLink, updateLink } from '../actions/AppActions';
+import { saveLink, fetchLink, updateLink } from '../../actions/AppActions';
 import Link from './Link';
 
 class LinkForm extends React.Component {

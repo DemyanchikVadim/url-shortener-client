@@ -14,7 +14,7 @@ export default function LinksList({ links, deleteLink }) {
   
   return (
     <div>
-      {links.length === 0 ? emptyMessage : linksList}
+      { links.length === 0 ? emptyMessage : linksList }
     </div>
   );
 }
