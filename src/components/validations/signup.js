@@ -1,24 +1,24 @@
-import { isEmpty, isEmail, equals } from 'validator';
+import validator from 'validator';
 
 function validateInput(data) {
   const errors = {};
 
-  if (isEmpty(data.username)) {
+  if (validator.isEmpty(data.username)) {
     errors.username = 'This field is required';
   }
-  if (isEmpty(data.email)) {
+  if (validator.isEmpty(data.email)) {
     errors.email = 'This field is required';
   }
-  if (!isEmail(data.email)) {
+  if (!validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
   }
-  if (isEmpty(data.password)) {
+  if (validator.isEmpty(data.password)) {
     errors.password = 'This field is required';
   }
-  if (isEmpty(data.confirmPassword)) {
+  if (validator.isEmpty(data.confirmPassword)) {
     errors.confirmPassword = 'This field is required';
   }
-  if (!equals(data.password, data.confirmPassword)) {
+  if (!validator.equals(data.password, data.confirmPassword)) {
     errors.confirmPassword = 'Passwords must match';
   }
   const isValid = Object.keys(errors).length === 0;

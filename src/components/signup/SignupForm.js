@@ -8,7 +8,8 @@ class SignupForm extends React.Component {
     email: '',
     password: '',
     confirmPassword: '',
-    errors: {}
+    errors: {},
+    loading: false
   };
 
   handleChange = (e) => {
@@ -35,8 +36,15 @@ class SignupForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if(this.isValid()){
-      console.log(this.state)
+    if (this.isValid()) {
+      this.setState({loading: true});
+      this.props.userSignupRequest(this.state)
+        .then(
+        () => {
+          this.setState({loading: false})
+        },
+        (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
+      );
     }
   };
 
@@ -89,5 +97,9 @@ class SignupForm extends React.Component {
     )
   }
 }
+
+SignupForm.propTypes = {
+  userSignupRequest: React.PropTypes.func.isRequired
+};
 
 export default SignupForm;

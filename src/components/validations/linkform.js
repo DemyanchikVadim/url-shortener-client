@@ -1,14 +1,14 @@
-import { isEmpty, isURL } from 'validator';
+import validator from 'validator';
 
 function validateInput(data) {
   const errors = {};
-  if (isEmpty(data.link)) {
+  if (validator.isEmpty(data.link)) {
     errors.link = 'Input is empty';
   }
-  if (!isURL(data.link) && !isEmpty(data.link)) {
+  if (!validator.isURL(data.link) && !validator.isEmpty(data.link)) {
     errors.link = 'It is not a valid url.';
   }
-  if (isEmpty(data.tags)) {
+  if (validator.isEmpty(data.tags)) {
     errors.tags = 'Input is empty';
   }
   const isValid = Object.keys(errors).length === 0;
