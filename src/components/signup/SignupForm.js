@@ -92,7 +92,7 @@ class SignupForm extends React.Component {
             name="confirmPassword"/>
           <span>{this.state.errors.confirmPassword}</span>
         </div>
-        <button className="ui button" type="submit">Submit</button>
+        <button className="ui button blue" type="submit">Submit</button>
       </form>
     )
   }
