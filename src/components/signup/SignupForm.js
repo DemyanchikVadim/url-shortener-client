@@ -40,11 +40,11 @@ class SignupForm extends React.Component {
       this.setState({loading: true});
       this.props.userSignupRequest(this.state)
         .then(
-        () => {
-          this.setState({loading: false})
-        },
-        (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
-      );
+        () => { this.setState({loading: false}) })
+        .catch(
+        (err) => {
+          this.setState({ errors: err.response.data.errors, loading: false })
+        });
     }
   };
 

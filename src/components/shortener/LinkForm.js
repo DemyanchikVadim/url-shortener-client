@@ -57,19 +57,25 @@ class LinkForm extends React.Component {
       const { _id, link, tags} = this.state;
       this.setState({loading: true});
       if (_id) {
-        this.props.updateLink({ _id, link, tags }).then(
+        this.props.updateLink({ _id, link, tags })
+          .then(
           () => {
             this.setState({loading: false})
-          },
-          (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
-        );
+          })
+          .catch(
+          (err) => {
+            this.setState({ errors: err.response.data.errors, loading: false })
+          });
       } else {
-        this.props.saveLink({link, tags}).then(
+        this.props.saveLink({link, tags})
+          .then(
           () => {
             this.setState({loading: false})
-          },
-          (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
-        );
+          })
+          .catch(
+          (err) => {
+            this.setState({ errors: err.response.data.errors, loading: false })
+          });
       }
     }
   };

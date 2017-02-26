@@ -1,22 +1,16 @@
-function handleResponse(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    let error = new Error(response.statusText);
-    error.response = response;
-    throw error;
-  }
-}
+import axios from 'axios';
+
+import setAuthorizationToken from '../utils/setAuthorizationToken'
 
 export function login(data) {
   return dispatch => {
-    return fetch('/api/auth', {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(handleResponse)
+    return axios.post('/api/auth', data)
+      .then(res => {
+      console.log(res);
+      const token = res.data.token;
+      localStorage.setItem('jwtToken', token);
+      setAuthorizationToken(token);
+    })
   }
 }
 

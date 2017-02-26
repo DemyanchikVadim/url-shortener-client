@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import validateInput from '../validations/login';
+import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/authActions';
 import { connect } from 'react-redux';
 
@@ -9,7 +10,8 @@ class LoginForm extends React.Component {
     identifier: '',
     password: '',
     errors: {},
-    loading: false
+    loading: false,
+    redirect: false
   };
 
   handleChange = (e) => {
@@ -41,17 +43,22 @@ class LoginForm extends React.Component {
       this.props.login(this.state)
         .then(
           () => {
-            this.setState({loading: false})
-          },
-          (err) => err.response.json().then(({errors}) => this.setState({errors, loading: false}))
-        );
+            this.setState({loading: false, redirect: true})
+          })
+        .catch(
+          (err) => {
+            this.setState({ errors: err.response.data.errors, loading: false })
+          });
     }
   };
 
   render() {
     return (
+      this.state.redirect ? <Redirect to="/" /> :
       <form className="ui login form" onSubmit={this.handleSubmit}>
         <h1>Log in</h1>
+
+        {this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div> }
 
         <div className={classnames('field', {error: !!this.state.errors.identifier})}>
           <label>Username / Email</label>
