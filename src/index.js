@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
+import jwtDecode from 'jwt-decode';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/rootReducer';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import { setCurrentUser } from './actions/authActions';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-
-import App from './components/App';
-import rootReducer from './reducers/rootReducer';
 
 const store = createStore(
   rootReducer,
@@ -15,6 +17,11 @@ const store = createStore(
     applyMiddleware(thunk)
   )
 );
+
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+}
 
 ReactDOM.render(
   <BrowserRouter>

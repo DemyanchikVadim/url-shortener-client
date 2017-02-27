@@ -3,3 +3,4 @@ export const ADD_LINK = 'ADD_LINK';
 export const LINK_FETCHED = 'LINK_FETCHED';
 export const LINK_UPDATED = 'LINK_UPDATED';
 export const LINK_DELETED = 'LINK_DELETED';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
