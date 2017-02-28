@@ -53,8 +53,13 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return (
+         <Redirect to="/" />
+      )
+    }
+
     return (
-      this.state.redirect ? <Redirect to="/" /> :
       <form className="ui login form" onSubmit={this.handleSubmit}>
         <h1>Log in</h1>
 
