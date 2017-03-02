@@ -11,8 +11,8 @@ class FlashMessage extends React.Component {
     const { type, text } = this.props.message;
     return (
       <div className={classnames('alert', {
-        'ui success message': type === 'success',
-        'ui negative message': type === 'error'
+        'ui success green message': type === 'success',
+        'ui negative red message': type === 'error'
       })}>
         <i className="close icon" onClick={this.onClick}>
 

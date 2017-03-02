@@ -70,7 +70,7 @@ class LinkForm extends React.Component {
         this.props.saveLink({link, tags})
           .then(
           () => {
-            this.setState({loading: false})
+            this.setState({link: '', tags: '', loading: false})
           })
           .catch(
           (err) => {
@@ -84,7 +84,8 @@ class LinkForm extends React.Component {
     return (
       <div className="container">
         <h1 className="form-header">Url-shortener</h1>
-        <div className="shorten-url">
+        <div className="shorten-url-wrapper">
+         <div className="shorten-url">
           <form className={classnames('ui', 'form', {loading: this.state.loading})} onSubmit={this.handleSubmit}>
             
             {this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div> }
@@ -114,8 +115,9 @@ class LinkForm extends React.Component {
               <button className='ui primary button'>Enter</button>
             </div>
           </form>
+         </div>
         </div>
-        <div className="shortened-link">
+        <div className="shortened-link-wrapper">
           <ShortLink />
         </div>
       </div>

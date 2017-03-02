@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
       return (
          <Redirect to="/" />
       )
-    }
+    } else
 
     return (
       <form className="ui login form" onSubmit={this.handleSubmit}>
@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
           <input
             value={this.state.password}
             onChange={this.handleChange}
-            type="text"
+            type="password"
             name="password"/>
           <span>{this.state.errors.password}</span>
         </div>

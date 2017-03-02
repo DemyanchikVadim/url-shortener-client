@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Link extends React.Component {
   render() {
     const shortLink = (
-      <div className="ui green message">
+      <div className="ui massive message shortened-link">
         <div>
           <h3>
             <a className="long-link" href={this.props.link.url}>
