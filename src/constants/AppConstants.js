@@ -1,0 +1,8 @@
+export const SET_LINKS = 'SET_LINKS';
+export const ADD_LINK = 'ADD_LINK';
+export const LINK_FETCHED = 'LINK_FETCHED';
+export const LINK_UPDATED = 'LINK_UPDATED';
+export const LINK_DELETED = 'LINK_DELETED';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE';
+export const DELETE_FLASH_MESSAGE = 'DELETE_FLASH_MESSAGE';
