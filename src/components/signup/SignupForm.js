@@ -40,7 +40,14 @@ class SignupForm extends React.Component {
       this.setState({loading: true});
       this.props.userSignupRequest(this.state)
         .then(
-        () => { this.setState({loading: false}) })
+        () => {
+          this.setState({loading: false});
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'You signed up successfully. Welcome! Please Log In'
+          });
+          this.context.router.push('/login');
+        })
         .catch(
         (err) => {
           this.setState({ errors: err.response.data.errors, loading: false })
@@ -78,7 +85,7 @@ class SignupForm extends React.Component {
           <input
             value={this.state.password}
             onChange={this.handleChange}
-            type="text"
+            type="password"
             name="password"/>
           <span>{this.state.errors.password}</span>
         </div>
@@ -88,7 +95,7 @@ class SignupForm extends React.Component {
           <input
             value={this.state.confirmPassword}
             onChange={this.handleChange}
-            type="text"
+            type="password"
             name="confirmPassword"/>
           <span>{this.state.errors.confirmPassword}</span>
         </div>
@@ -98,8 +105,13 @@ class SignupForm extends React.Component {
   }
 }
 
+SignupForm.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
 SignupForm.propTypes = {
-  userSignupRequest: React.PropTypes.func.isRequired
+  userSignupRequest: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired,
 };
 
 export default SignupForm;
