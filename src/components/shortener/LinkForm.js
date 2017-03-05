@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { saveLink, fetchLink, updateLink } from '../../actions/AppActions';
 import ShortLink from './ShortLink';
-import validateInput from '../validations/linkform';
+import validateInput from '../../validations/linkform';
 
 class LinkForm extends React.Component {
   state = {

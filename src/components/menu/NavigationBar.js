@@ -42,7 +42,7 @@ class NavigationBar extends React.Component {
 
     const guestLinks = (
       <div className="ui menu">
-        <ActiveLink activeOnlyWhenExact to="/" label="Home" />
+        <ActiveLink activeOnlyWhenExact to="/links" label="Links" />
         <div className="right menu">
           <ActiveLink activeOnlyWhenExact to="/signup" label="Sign up" />
           <ActiveLink activeOnlyWhenExact to="/login" label="Log In" />
@@ -55,9 +55,9 @@ class NavigationBar extends React.Component {
         { isAuthenticated ? userLinks : guestLinks }
         <FlashMessagList />
         <Switch>
-          <Route exact path="/" component={LinkForm} />
+          <Route exact path="/" component={requireAuth(LinkForm)} />
           <Route path="/link/:_id" component={requireAuth(LinkForm)} />
-          <Route path="/links" component={requireAuth(LinksPage)} />
+          <Route path="/links" component={LinksPage} />
           <Route path="/signup" component={SignupPage} />
           <Route path="/login" component={LoginPage} />
           <Route component={NotFound} />

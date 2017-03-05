@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import validateInput from '../validations/signup';
+import validateInput from '../../validations/signup';
 
 class SignupForm extends React.Component {
   state = {

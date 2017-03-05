@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import validateInput from '../validations/login';
+import validateInput from '../../validations/login';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/authActions';
 import { connect } from 'react-redux';
