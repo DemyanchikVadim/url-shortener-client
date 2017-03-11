@@ -5,7 +5,7 @@ describe('actions', () => {
   it('should create an action to add a message', () => {
     const message = {
       type: 'error',
-      text: 'You need to login to access this page'
+      text: 'You need to Login to access this page'
     };
     const expectedAction = {
       type: types.ADD_FLASH_MESSAGE,

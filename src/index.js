@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './containers/App';
 import jwtDecode from 'jwt-decode';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';

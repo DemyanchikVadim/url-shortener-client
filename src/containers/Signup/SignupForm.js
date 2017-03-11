@@ -1,6 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import validateInput from '../../validations/signup';
+import { connect } from 'react-redux';
+import { userSignupRequest } from '../../actions/signupActions';
+import { addFlashMessage } from '../../actions/messageActions';
+
 
 class SignupForm extends React.Component {
   state = {
@@ -46,7 +50,7 @@ class SignupForm extends React.Component {
             type: 'success',
             text: 'You signed up successfully. Welcome! Please Log In'
           });
-          this.context.router.push('/login');
+          this.context.router.push('/Login');
         })
         .catch(
         (err) => {
@@ -114,4 +118,4 @@ SignupForm.propTypes = {
   addFlashMessage: React.PropTypes.func.isRequired,
 };
 
-export default SignupForm;
+export default connect(null, { userSignupRequest, addFlashMessage })(SignupForm);

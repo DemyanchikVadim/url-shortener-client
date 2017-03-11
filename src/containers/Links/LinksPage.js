@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import LinksList from './LinksList';
+import LinksList from '../../components/Links/LinksList';
 import { fetchLinks, deleteLink } from '../../actions/AppActions';
 
 class LinksPage extends React.Component {

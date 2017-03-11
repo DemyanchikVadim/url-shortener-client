@@ -21,4 +21,3 @@ export default function LinkCard({link, deleteLink}) {
 LinkCard.propTypes = {
   link: React.PropTypes.object.isRequired
 };
-

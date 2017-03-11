@@ -96,4 +96,3 @@ LoginForm.propTypes = {
 };
 
 export default connect(null, { login })(LoginForm);
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import FlashMessage from './FlashMessage';
+import FlashMessage from '../../components/Flash/FlashMessage';
 import { connect } from 'react-redux';
 import { deleteFlashMessage } from '../../actions/messageActions';
 
